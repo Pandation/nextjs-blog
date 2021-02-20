@@ -16,6 +16,9 @@ export default function Home() {
       <section>
         <Form />
       </section>
+      <section>
+        hello world!
+      </section>
     </Layout>
   )
 }
