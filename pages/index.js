@@ -4,7 +4,7 @@ import utilStyles from '../styles/utils.module.css';
 import Form from '../components/Form/Form';
 
 
-export default function Home() {
+export default function Home({result}) {
   return (
     <Layout home>
       <Head>
@@ -17,9 +17,19 @@ export default function Home() {
         <Form />
       </section>
       <section>
-        hello world!
+        hello world! Voilà {' '+result.data}
       </section>
     </Layout>
   )
 }
 
+export async function getStaticProps() {
+  const fetched = await fetch('https://florianbaumes.vercel.app/api/posts')
+  const result = await fetched.json();
+
+  return {
+    props : {
+      result
+    }
+  }
+}
