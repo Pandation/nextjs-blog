@@ -25,7 +25,7 @@ export default function Home({result}) {
 
 
 export async function getStaticProps() {
-  const data = await fetch('http://localhost:3000/api/posts')
+  const data = await fetch('https://florianbaumes.vercel.app/api/posts')
   const result = await data.json();
   return {
     props : {
