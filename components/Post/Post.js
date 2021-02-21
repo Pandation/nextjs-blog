@@ -9,7 +9,7 @@ const Post = ({data}) => {
                 <h1>{data.title}</h1>
                 <p>{data.content}</p>
                 <p className={utilStyles.lightText}>{data.author}</p>
-                <p>{formatDistance(subDays(new Date(), 5), new Date(), { locale: fr })}</p>
+                <p>{formatDistance(data.date, new Date(), { locale: fr })}</p>
             </div>
     )
 }

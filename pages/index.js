@@ -18,17 +18,15 @@ export default function Home() {
       const data = await fetch('./api/posts');
       const results = await data.json();
       const children = results.datas.map((child, index) =>
-      { 
-        return (
-        <div key={`article_${index}`}>
+        (<div key={`article_${index}`}>
           <h4>{child.title}</h4>
           <p>{child.content} n°{index}</p>
-          <p className={utilStyles.lightText}>By {child.author}<br/>{formatDistance(Date.parse(child.date), new Date()), { locale: fr}}</p>
+          <p className={utilStyles.lightText}>By {child.author}<br/>{formatDistance(Date.parse(child.date), new Date(), { locale: fr})}</p>
           <Link href={`/posts/${index}`}>
             <a>Voir plus...</a>
           </Link>
         </div>)
-      });
+        );
       setData(children);
   }, [])
 
