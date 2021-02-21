@@ -23,7 +23,7 @@ export default function Home({result}) {
         <div key={`article_${index}`}>
           <h4>{child.title}</h4>
           <p>{child.content} n°{index}</p>
-          <p className={utilStyles.lightText}>By {child.author}<br/>{formatDistance(Date.parse(child.date), new Date())}</p>
+          <p className={utilStyles.lightText}>By {child.author}<br/>{formatDistance(Date.parse(child.date), new Date()), { locale: fr}}</p>
           <Link href={`/posts/${index}`}>
             <a>Voir plus...</a>
           </Link>
