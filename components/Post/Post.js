@@ -1,5 +1,5 @@
 import utilStyles from '../../styles/utils.module.css';
-import { formatDistance, subDays } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
 const Post = ({data}) => {
@@ -9,7 +9,7 @@ const Post = ({data}) => {
                 <h1>{data.title}</h1>
                 <p>{data.content}</p>
                 <p className={utilStyles.lightText}>{data.author}</p>
-                <p>{formatDistance(data.date, new Date(), { locale: fr })}</p>
+                <p>{formatDistance(Date.parse(data.date), new Date(), { locale: fr })}</p>
             </div>
     )
 }
