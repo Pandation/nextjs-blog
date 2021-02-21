@@ -38,7 +38,7 @@ export default function Home() {
       <section className={utilStyles.headingMd}>
         <p>Hello, I'm Flo, I'm a Web developer.</p>
       </section>
-      <section><Form /></section>
+      {/* <section><Form /></section> */}
       <section>
         <h2>Derniers articles</h2>
         <div>{data}</div>
