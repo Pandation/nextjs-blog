@@ -5,11 +5,11 @@ import utilStyles from '../styles/utils.module.css';
 import Form from '../components/Form/Form';
 import MoonLoader from 'react-spinners/MoonLoader';
 import {useState, useEffect} from 'react';
-import {formatDistance, subDays} from 'date-fns';
+import {formatDistance} from 'date-fns';
 import { fr } from 'date-fns/locale';
 
 
-export default function Home({result}) {
+export default function Home() {
 
   const [ data , setData] = useState(<MoonLoader size={50} color="black"/>);
 
