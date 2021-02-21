@@ -3,19 +3,19 @@ let test = {
             title: "title",
             author : "John",
             content : "machin",
-            date: new Date().toDateString()
+            date: "2021-02-21T11:55:50.733Z"
         },
         {
             title: "title",
             author : "John",
             content : "Something",
-            date: new Date().toDateString()
+            date: "2021-02-21T11:55:50.733Z"
         },
         {
             title: "title",
             author : "John",
             content : "Something",
-            date: new Date().toDateString()
+            date: "2021-02-21T11:55:50.733Z"
         }
     ]
 }

@@ -5,6 +5,8 @@ import utilStyles from '../styles/utils.module.css';
 import Form from '../components/Form/Form';
 import MoonLoader from 'react-spinners/MoonLoader';
 import {useState, useEffect} from 'react';
+import {formatDistance, subDays} from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 
 export default function Home({result}) {
@@ -16,12 +18,12 @@ export default function Home({result}) {
       const data = await fetch('./api/posts');
       const results = await data.json();
       const children = results.datas.map((child, index) =>
-      {
+      { 
         return (
         <div key={`article_${index}`}>
           <h4>{child.title}</h4>
           <p>{child.content} n°{index}</p>
-          <p className={utilStyles.lightText}>By {child.author}<br/>{child.date}</p>
+          <p className={utilStyles.lightText}>By {child.author}<br/>{formatDistance(Date.parse(child.date), new Date())}</p>
           <Link href={`/posts/${index}`}>
             <a>Voir plus...</a>
           </Link>
