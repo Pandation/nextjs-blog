@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import Form from '../components/Form/Form';
-import MoonLoader from 'react-spinners/MoonLoader';
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 import {useState, useEffect} from 'react';
 import {formatDistance} from 'date-fns';
 import { fr } from 'date-fns/locale';
@@ -11,7 +11,8 @@ import { fr } from 'date-fns/locale';
 
 export default function Home() {
 
-  const [ data , setData] = useState(<MoonLoader size={50} color="black"/>);
+  const [ data , setData] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(async () => {
@@ -28,6 +29,7 @@ export default function Home() {
         </div>)
         );
       setData(children);
+      setIsLoading(false);
   }, [])
 
   return (
@@ -41,9 +43,8 @@ export default function Home() {
       {/* <section><Form /></section> */}
       <section>
         <h2>Derniers articles</h2>
-        <div>{data}</div>
+        <div>{!isLoading? data : ""}</div>
       </section>
     </Layout>
   )
 }
-
