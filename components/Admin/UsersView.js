@@ -1,26 +1,49 @@
 import AdLayout from './adminLayout';
 import UserItem from './UserItem';
-import {useEffect, useState} from 'react'
-import AppConfig from '../../reducers/AppConfig';
+import {useEffect, useReducer, useState} from 'react'
+import useAppConfig from '../../reducers/AppConfig';
 import Link from "next/link";
+import {useRouter} from 'next/router';
 
+const initialState = {
+  isNew : false
+}
+const reducer = (state, action ) => {
+  switch(action.type) 
+  {
+    case "NEW": 
+      return {...state, isNew : !state.isNew} 
+  }
+}
 
 const UsersView = () => {
 
   const [datas, setData] = useState(undefined);
-  const [state, dispatch] = AppConfig();
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const router = useRouter();
+  
+  const [test, setTest] = useState(false)
 
-  useEffect(() => {
-    console.log(state.new)
-    if(state.new){
-      fetch("http://localhost:3000/api/user")
-        .then(docs => docs.json())
-        .then(json => {
-          setData(json);
-          dispatch({type : "NEW"});
-        });
-    }
-  }, [state])
+  useEffect(()=>{
+    console.log(test);
+    setTest(true)
+    console.log(test);
+  },[])
+
+  // useEffect(async () => {
+  //   setData("");
+  //   console.log(" début " +state.isNew)
+  //   const asyncFunc = async (isNew) => {
+  //     if(isNew){
+  //     const result = await (fetch("http://localhost:3000/api/user")).then(res=> res.json());
+  //     await setData(result);
+  //     await dispatch({type:"NEW"})
+  //     await console.log("fin fonction : "+state.isNew)
+  //     }
+  //   }
+  //   asyncFunc(state.isNew)
+    
+  // }, [state.isNew])
 
 
     return (
@@ -98,7 +121,7 @@ const UsersView = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {datas ? datas.map((data, index)=><UserItem user={data} key={`userItem_${index}`}/>): null}
+            {datas ? datas.map((data, index)=><UserItem callback={dispatch} user={data} key={`userItem_${index}`}/>): null}
           </tbody>
         </table>
       </div>

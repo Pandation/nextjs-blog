@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AppConfig from '../../reducers/AppConfig';
 
-const UserItem = ({user}) => {
+const UserItem = ({user, callback}) => {
 
     const [state, dispatch] = AppConfig();
 
@@ -33,9 +33,11 @@ const UserItem = ({user}) => {
           {role}</a></Link>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <button onClick={() => dispatch({ type : 'PUT', id: user._id})}>Editer
-          </button>
-          <button onClick={() => dispatch({ type : 'DELETE', id: user._id})}>Supprimer</button>
+        {/* <button onClick={() => dispatch({ type : 'PUT', id: user._id})}>Editer
+          </button> */}
+          <button onClick={() => {
+            console.log("ok")
+            callback({ type : 'DELETE', id: user._id})}}>Supprimer</button>
           </td>
       </tr>)
 }

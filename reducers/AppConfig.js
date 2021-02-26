@@ -1,27 +1,40 @@
-import {useReducer} from 'react';
+const initialStates = {
+    users : undefined,
+    isNew : true
+}
+const NEW_DATA = "NEW_DATA";
+const DELETE = "DELETE";
 
-const reducer = (state, action) => {
+export default DatasReducer = (state, action) => {
     switch(action.type) {
-        case "NEW":
-            return {...state , new : false}
-        case "DELETE":
-            fetch(`http://localhost:3000/api/user/${action.id}`,{
-                method: "DELETE"
-            }).then(() => {
-                return { ...state , new : true }
-            } )
+        case NEW_DATA:
+            console.log("NEW: " + state.isNew)
+            const result = {...state , isNew : !state.isNew}
+            console.log("NEW " + result.isNew)
+            return result;
+
+        case DELETE:
+            // fetch(`http://localhost:3000/api/user/${action.id}`,{
+            //     method: "DELETE"
+            // }).then(() => {
+                return { ...state , isNew : true }
+            // } )
 
     }
 }
-const initialStates = {
-    users : undefined,
-    new : true
+
+const middleware = (dispatch) => (action) => {
+    switch(action.type) {
+        case "DELETE" :
+            fetch(`http://localhost:3000/api/user/${action.id}`,{
+                method: "DELETE"
+            }).then(() => dispatch({ type : "NEW"}))
+            break;
+        case "NEW":
+            dispatch({type:"NEW"});
+            break;
+    }
+
 }
 
-const AppConfig = () => {
 
-    const [state, dispatch] = useReducer(reducer, initialStates)
-    return [state, dispatch];
-}
-
-export default AppConfig
