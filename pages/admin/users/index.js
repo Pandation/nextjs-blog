@@ -1,4 +1,4 @@
-import UsersView from '../../components/Admin/UsersView';
+import UsersView from '../../../components/Admin/UsersView';
 
 export default function Users () {
 

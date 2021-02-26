@@ -14,9 +14,9 @@ export default async(req, res) => {
 
                 if(user)
                     res.status(200).send({ "ope" : "success"})
-                else res.status(200).json({ "error" : "une erreur a eu lieu oups"})
+                else res.status(200).send("error : une erreur a eu lieu oups")
             } catch (err) {
-                res.status(400).send(err)
+                res.status(400).send("L'erreur survenue est :" + err)
             }
     }
 }

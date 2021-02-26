@@ -1,33 +1,43 @@
-import Image from 'next/image'
-const UserItem = ({data}) => {
-    const {firstname, email, name, role, picture} = data;
-    return (
-        <tr>
-        <td className="px-6 py-4 whitespace-nowrap">
+import Image from 'next/image';
+import Link from 'next/link';
+import AppConfig from '../../reducers/AppConfig';
+
+const UserItem = ({user}) => {
+
+    const [state, dispatch] = AppConfig();
+
+    const { firstname, email, name, role, picture} = user;
+
+    return (<tr>
+          <td className="px-6 py-4 whitespace-nowrap">
+            <Link href={`/admin/users/${user._id}`}><a>
           <div className="flex items-center">
             <div className="flex-shrink-0 h-10 w-10">
-              <Image className="h-10 w-10 rounded-full" src={picture} alt="" width={50} height={50}/>
+              <Image className="rounded-full" src={picture} alt="profile picture" width={50} height={50}/>
             </div>
             <div className="ml-4">
               <div className="text-sm font-medium text-gray-900">
                 {firstname + " " + name}
               </div>
             </div>
-          </div>
+          </div></a></Link>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
+        <Link href={`/admin/users/${user._id}`}><a>
         <div className="text-sm font-medium text-gray-900">
         {email}
-              </div>
+              </div></a></Link>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {role}
+        <Link href={`/admin/users/${user._id}`}><a>
+          {role}</a></Link>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-          <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
-        </td>
-      </tr>
-    )
+        <button onClick={() => dispatch({ type : 'PUT', id: user._id})}>Editer
+          </button>
+          <button onClick={() => dispatch({ type : 'DELETE', id: user._id})}>Supprimer</button>
+          </td>
+      </tr>)
 }
 
 export default UserItem
