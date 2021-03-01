@@ -1,50 +1,10 @@
 import AdLayout from './adminLayout';
-import UserItem from './UserItem';
-import {useEffect, useReducer, useState} from 'react'
-import useAppConfig from '../../reducers/AppConfig';
 import Link from "next/link";
-import {useRouter} from 'next/router';
+import ItemsTable from './ItemsTable';
 
-const initialState = {
-  isNew : false
-}
-const reducer = (state, action ) => {
-  switch(action.type) 
-  {
-    case "NEW": 
-      return {...state, isNew : !state.isNew} 
-  }
-}
+
 
 const UsersView = () => {
-
-  const [datas, setData] = useState(undefined);
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const router = useRouter();
-  
-  const [test, setTest] = useState(false)
-
-  useEffect(()=>{
-    console.log(test);
-    setTest(true)
-    console.log(test);
-  },[])
-
-  // useEffect(async () => {
-  //   setData("");
-  //   console.log(" début " +state.isNew)
-  //   const asyncFunc = async (isNew) => {
-  //     if(isNew){
-  //     const result = await (fetch("http://localhost:3000/api/user")).then(res=> res.json());
-  //     await setData(result);
-  //     await dispatch({type:"NEW"})
-  //     await console.log("fin fonction : "+state.isNew)
-  //     }
-  //   }
-  //   asyncFunc(state.isNew)
-    
-  // }, [state.isNew])
-
 
     return (
 <>
@@ -98,45 +58,18 @@ const UsersView = () => {
     </span>
   </div>
 </div>
-        {/* // <!-- This example requires Tailwind CSS v2.0+ --> */}
-<div className="flex flex-col">
-  <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Name
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Email
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Role
-              </th>
-              <th scope="col" className="relative px-6 py-3">
-                <span className="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {datas ? datas.map((data, index)=><UserItem callback={dispatch} user={data} key={`userItem_${index}`}/>): null}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+      <ItemsTable users/>
+
     </div>
   </main>
      
     </>)
 }
 
-export default UsersView
 
 
+
+export default UsersView;
 
 
 

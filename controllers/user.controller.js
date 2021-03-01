@@ -17,17 +17,15 @@ module.exports.getUser = async (req,res) => {
 }
 
 module.exports.getUsers = async (req,res) => {
-    try {
-        const users = await UserModel.find((err, docs)=> {
-            if(!err) return res.status(200).send(docs);
-            else return res.status(404).send(err);
-        });
-        
-    } catch (err) {
-        return res.status(404).send(err);
+    try{
+        const users = await UserModel.find().select('-password')
+        res.status(200).json(users)
+    }catch(err){
+        res.status(400).send(err);
     }
 }
-
+        
+        
 module.exports.updateUser = async (req,res) => {
     if(!ObjectID.isValid(req.query.id)) return res.status(404).send("ID Unknown : "+req.query.id)
 

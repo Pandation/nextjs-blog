@@ -6,8 +6,8 @@ export default async (req, res) => {
 
     switch(method) {
         case "GET" :
-        default:
             return userController.getUsers(req,res);
-            break;
+        default:
+            res.status(200).json({err : "problème dtc"})
     }
 }
