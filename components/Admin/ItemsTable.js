@@ -1,18 +1,11 @@
 import UserItem from "./UserItem";
-import { useEffect, useState, useReducer } from "react";
-
-const reducer = (state, action) => {
-  if(action.type){
-    return {...state, newData : false}
-  }
-  return {...state, newData : true}
-}
+import { useEffect, useState } from "react";
+import Reducer from "../../redux/reducers/test";
 
 
 const ItemsTable = () => {
   const [datas, setData] = useState(undefined);
-  // const [newData, setNewData] = useState(true);
-  const [state, dispatch] = useReducer(reducer, { newData : true })
+  const [state, dispatch] = Reducer();
 
   useEffect(() => {
     
@@ -38,7 +31,7 @@ const ItemsTable = () => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Name
+                    Nom
                   </th>
                   <th
                     scope="col"

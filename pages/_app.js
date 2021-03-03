@@ -6,4 +6,6 @@ const App = function ({ Component, pageProps}) {
     return <Component {...pageProps} />
 }
 
+//redux version
 export default wrapper.withRedux(App);
+// export default App;

@@ -5,6 +5,7 @@ import utilStyles from '../styles/utils.module.css';
 import {useState, useEffect} from 'react';
 import {formatDistance} from 'date-fns';
 import { fr } from 'date-fns/locale';
+import styles from '../styles/test.module.scss';
 
 
 export default function Home() {
@@ -35,7 +36,7 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section className={utilStyles.headingMd + " " +styles.paragraph}>
         <p>Hello, I'm Flo, I'm a Web developer.</p>
       </section>
       {/* <section><Form /></section> */}

@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import Reducer from '../../redux/reducers/test';
 
 const UserItem = ({user, callback}) => {
 
     const { firstname, email, name, role, picture} = user;
+    const [state, dispatch] = Reducer();
 
     return (<tr>
           <td className="px-6 py-4 whitespace-nowrap">

@@ -49,7 +49,7 @@ module.exports.createUser = async (req,res) => {
 
     try {
         const user = await UserModel.findById(req.query.id);
-        if(user) return res.status(200).send(user);
+        if(user) return res.status(201).send(user);
         else throw new Error("Erreur user.controller");
     } catch (err) {
         throw err;
